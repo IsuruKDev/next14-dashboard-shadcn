@@ -2,54 +2,45 @@
 import React from 'react'
 import UserItem from './UserItem'
 import { Command, CommandGroup, CommandItem, CommandList, CommandSeparator } from './command'
-import { BellRing, Cog, Fuel, GlobeLock, Inbox, ScrollText, UserPen } from 'lucide-react'
+import { MonitorCog, NotebookTabs, Rows4, ScrollText, Workflow } from 'lucide-react'
+import Link from 'next/link'
 
 const Sidebar = () => {
 
     const leftNavBarItems = [
         {
-            group: "General",
+            group: "Unindex",
             items: [
                 {
-                    link: "/",
-                    text: "Profile",
-                    icon: <UserPen />
+                    link: "/unindex/unindexlist",
+                    text: "Unindex List",
+                    icon: <Rows4 />
                 },
                 {
-                    link: "/",
-                    text: "Inbox",
-                    icon: <Inbox />
-                },
-                {
-                    link: "/",
-                    text: "Billing",
-                    icon: <Fuel />
-                },
-                {
-                    link: "/",
-                    text: "Notifications",
-                    icon: <BellRing />
+                    link: "/unindex/casehistory",
+                    text: "Case History",
+                    icon: <NotebookTabs />
                 }
             ]
         },
         {
-            group: "Settings",
+            group: "Workflow",
             items: [
                 {
                     link: "/",
-                    text: "General Settings",
-                    icon: <Cog />
+                    text: "Workqueue",
+                    icon: <Workflow />
                 },
                 {
                     link: "/",
-                    text: "Privacy",
-                    icon: <GlobeLock />
+                    text: "Configurations",
+                    icon: <MonitorCog />
                 },
                 {
                     link: "/",
-                    text: "Logs",
+                    text: "File",
                     icon: <ScrollText />
-                },
+                }
             ]
         }
     ];
@@ -58,13 +49,15 @@ const Sidebar = () => {
             <UserItem />
             <div className='grow'>
                 <Command style={{ overflow: 'visible' }}>
-                    {leftNavBarItems.map((main: any, key: number) => (
+                    {leftNavBarItems.map((main: any, index: number) => (
                         <CommandList style={{ overflow: 'visible' }}>
-                            <CommandGroup heading={main.group} key={key}>
+                            <CommandGroup heading={main.group} key={index}>
                                 {main.items.map((item: any, key: number) => (
-                                    <CommandItem key={key} className='flex gap-2 cursor-pointer'>
-                                        {item.icon}
-                                        {item.text}
+                                    <CommandItem key={key} >
+                                        <Link href={item.link} className='flex gap-2 cursor-pointer'>
+                                            {item.icon}
+                                            {item.text}
+                                        </Link>
                                     </CommandItem>
                                 ))}
                             </CommandGroup>
