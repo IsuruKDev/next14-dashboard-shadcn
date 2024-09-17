@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Sidebar from "@/components/ui/Sidebar";
+import Header from "@/components/ui/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +32,8 @@ export default function RootLayout({
         className={"flex items-start justify-between"}
       >
         <Sidebar />
-        <main className="w-full h-full">
+        <main className="grid w-full h-full pl-[300px]">
+          <Header />
           {children}
         </main>
       </body>
